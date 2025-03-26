@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,11 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Speech speed indicator colors
+				slow: '#3B82F6', // Blue
+				normal: '#10B981', // Green
+				fast: '#EF4444', // Red
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,12 +89,57 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'pulse-ring': {
+					'0%': {
+						transform: 'scale(0.8)',
+						opacity: '0.8'
+					},
+					'100%': {
+						transform: 'scale(1.5)',
+						opacity: '0'
+					}
+				},
+				'wave': {
+					'0%': { transform: 'scaleY(1)' },
+					'50%': { transform: 'scaleY(0.5)' },
+					'100%': { transform: 'scaleY(1)' }
+				},
+				'fade-in': {
+					'0%': { opacity: '0' },
+					'100%': { opacity: '1' }
+				},
+				'fade-in-up': {
+					'0%': { opacity: '0', transform: 'translateY(10px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' }
+				},
+				'scale-in': {
+					'0%': { opacity: '0', transform: 'scale(0.95)' },
+					'100%': { opacity: '1', transform: 'scale(1)' }
+				},
+				'bounce-light': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-5px)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pulse-ring': 'pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite',
+				'wave': 'wave 1.2s ease-in-out infinite',
+				'fade-in': 'fade-in 0.5s ease-out',
+				'fade-in-up': 'fade-in-up 0.5s ease-out',
+				'scale-in': 'scale-in 0.3s ease-out',
+				'bounce-light': 'bounce-light 2s ease-in-out infinite'
+			},
+			boxShadow: {
+				'subtle': '0 4px 20px -2px rgba(0, 0, 0, 0.06)',
+				'glass': '0 8px 32px rgba(0, 0, 0, 0.06)',
+				'highlight': 'inset 0 1px 0 0 rgba(255, 255, 255, 0.08)'
+			},
+			backdropFilter: {
+				'subtle': 'blur(8px) saturate(180%)',
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
