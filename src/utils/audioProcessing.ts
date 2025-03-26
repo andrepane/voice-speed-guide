@@ -44,7 +44,17 @@ export const calculateWPM = (
   durationInSeconds: number
 ): number => {
   if (durationInSeconds === 0) return 0;
-  return Math.round((wordCount / durationInSeconds) * 60);
+  
+  // Calculate WPM
+  const rawWPM = (wordCount / durationInSeconds) * 60;
+  
+  // Set a minimum value of 20 WPM if we have any sound input and some time has passed
+  // This helps when the word detection is imperfect but we know someone is speaking
+  if (wordCount > 0 && rawWPM < 20) {
+    return 20;
+  }
+  
+  return Math.round(rawWPM);
 };
 
 // Simple function to detect silence based on audio level
